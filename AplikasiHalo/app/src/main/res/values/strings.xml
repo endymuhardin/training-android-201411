@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AplikasiHalo</string>
+    <string name="title_activity_input_nama">InputNamaActivity</string>
+    <string name="input_nama">Nama Anda : </string>
+    <string name="input_nama_hint">Masukkan nama Anda</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_halo">HaloActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lbl_btnKirim">Kirim</string>
+
+</resources>
