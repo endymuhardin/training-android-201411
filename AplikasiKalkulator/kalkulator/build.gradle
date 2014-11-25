@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 18
+    compileSdkVersion 17
     buildToolsVersion "19.1.0"
 
     defaultConfig {
         applicationId "com.muhardin.endy.belajar.android.kalkulator"
-        minSdkVersion 18
+        minSdkVersion 17
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
