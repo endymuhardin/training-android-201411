@@ -30,7 +30,6 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
                 = new CustomerSqliteHelper(this);
 
         ContentValues dataCustomer = new ContentValues();
-        dataCustomer.put("_id", 3);
         dataCustomer.put("nama", "Endy");
         dataCustomer.put("tgl_lahir", 1);
         dataCustomer.put("jenis_kelamin", "P");
@@ -38,7 +37,8 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
         dataCustomer.put("alamat", "Pancoran");
 
         SQLiteDatabase db = dbCustomer.getWritableDatabase();
-        db.insert("customer", null, dataCustomer);
+        Long newId = db.insert("customer", null, dataCustomer);
+        Log.v("InputCustomer", "Insert record baru dengan ID " + newId);
     }
 
 
