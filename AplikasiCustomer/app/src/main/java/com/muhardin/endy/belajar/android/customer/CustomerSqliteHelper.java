@@ -15,8 +15,8 @@ public class CustomerSqliteHelper extends SQLiteOpenHelper {
             "domisili TEXT, " +
             "alamat TEXT )";
 
-    public CustomerSqliteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public CustomerSqliteHelper(Context context) {
+        super(context, CustomerConstants.NAMA_DATABASE, null, CustomerConstants.VERSI_DATABASE);
     }
 
     public CustomerSqliteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version, DatabaseErrorHandler errorHandler) {

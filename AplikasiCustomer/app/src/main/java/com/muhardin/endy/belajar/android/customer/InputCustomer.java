@@ -27,11 +27,10 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
         setContentView(R.layout.activity_input_customer);
 
         CustomerSqliteHelper dbCustomer
-                = new CustomerSqliteHelper(this, CustomerConstants.NAMA_DATABASE,
-                null, CustomerConstants.VERSI_DATABASE);
+                = new CustomerSqliteHelper(this);
 
         ContentValues dataCustomer = new ContentValues();
-        dataCustomer.put("_id", 2);
+        dataCustomer.put("_id", 3);
         dataCustomer.put("nama", "Endy");
         dataCustomer.put("tgl_lahir", 1);
         dataCustomer.put("jenis_kelamin", "P");
