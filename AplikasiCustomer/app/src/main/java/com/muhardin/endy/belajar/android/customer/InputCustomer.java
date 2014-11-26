@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +25,21 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_customer);
+
+        CustomerSqliteHelper dbCustomer
+                = new CustomerSqliteHelper(this, CustomerConstants.NAMA_DATABASE,
+                null, CustomerConstants.VERSI_DATABASE);
+
+        ContentValues dataCustomer = new ContentValues();
+        dataCustomer.put("_id", 2);
+        dataCustomer.put("nama", "Endy");
+        dataCustomer.put("tgl_lahir", 1);
+        dataCustomer.put("jenis_kelamin", "P");
+        dataCustomer.put("domisili", "Jakarta");
+        dataCustomer.put("alamat", "Pancoran");
+
+        SQLiteDatabase db = dbCustomer.getWritableDatabase();
+        db.insert("customer", null, dataCustomer);
     }
 
 
