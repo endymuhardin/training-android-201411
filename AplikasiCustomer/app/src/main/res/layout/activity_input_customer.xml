@@ -34,7 +34,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/dtTanggalLahir"
         android:layout_below="@id/lblTanggalLahir"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
+        style="@android:style/Widget.DeviceDefault.Light.Spinner"
+        android:onClick="tampilkanDatePicker" />
 
     <TextView
         android:layout_width="wrap_content"

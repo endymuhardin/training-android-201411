@@ -15,6 +15,7 @@
         android:id="@+id/hapus_customer"
         android:icon="@drawable/ic_action_discard"
         android:title="Hapus"
+        android:showAsAction="ifRoom"
         />
 
 </menu>

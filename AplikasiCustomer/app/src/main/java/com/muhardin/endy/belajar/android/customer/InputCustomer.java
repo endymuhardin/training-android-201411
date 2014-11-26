@@ -1,12 +1,23 @@
 package com.muhardin.endy.belajar.android.customer;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
-public class InputCustomer extends Activity {
+public class InputCustomer extends Activity implements DatePickerDialog.OnDateSetListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +45,22 @@ public class InputCustomer extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void tampilkanDatePicker(View v){
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        DialogFragment dialogDatePicker = new DatePickerFragment(this);
+        dialogDatePicker.show(ft, "date_dialog");
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        TextView dtTanggalLahir = (TextView) findViewById(R.id.dtTanggalLahir);
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMMM yyyy");
+
+        Calendar tanggalDipilih = new GregorianCalendar(year,monthOfYear,dayOfMonth);
+        String output = formatter.format(tanggalDipilih.getTime());
+        Log.v("InputCustomer", "Tanggal : " + output);
+        dtTanggalLahir.setText(output);
     }
 }
