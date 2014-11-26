@@ -11,34 +11,38 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public class InputCustomer extends Activity implements DatePickerDialog.OnDateSetListener {
+public class InputCustomer extends Activity
+        implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
+
+    private String pilihanDomisili;
+    private String pilihanJenisKelamin;
+    private SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMMM yyyy");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_customer);
+        Spinner spDomisili = (Spinner) findViewById(R.id.spDomisili);
+        ArrayAdapter<CharSequence> adapter
+                = ArrayAdapter.createFromResource(this, R.array.domisili, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDomisili.setAdapter(adapter);
 
-        CustomerSqliteHelper dbCustomer
-                = new CustomerSqliteHelper(this);
-
-        ContentValues dataCustomer = new ContentValues();
-        dataCustomer.put("nama", "Endy");
-        dataCustomer.put("tgl_lahir", 1);
-        dataCustomer.put("jenis_kelamin", "P");
-        dataCustomer.put("domisili", "Jakarta");
-        dataCustomer.put("alamat", "Pancoran");
-
-        SQLiteDatabase db = dbCustomer.getWritableDatabase();
-        Long newId = db.insert("customer", null, dataCustomer);
-        Log.v("InputCustomer", "Insert record baru dengan ID " + newId);
     }
 
 
@@ -50,13 +54,33 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.simpan_customer) {
+            CustomerSqliteHelper dbCustomer
+                    = new CustomerSqliteHelper(this);
+
+            String nama = ((EditText)findViewById(R.id.txtNama)).getText().toString();
+            String tanggalLahir = ((TextView)findViewById(R.id.dtTanggalLahir)).getText().toString();
+            Log.v("InputCustomer", "Tanggal Lahir : " + tanggalLahir);
+            String jenisKelamin = pilihanJenisKelamin != null ? pilihanJenisKelamin : "Tidak diisi";
+            String domisili = pilihanDomisili != null ? pilihanDomisili : "Tidak diisi";
+            String alamat = ((EditText)findViewById(R.id.txtAlamat)).getText().toString();
+
+            ContentValues dataCustomer = new ContentValues();
+            dataCustomer.put("nama", nama);
+            try {
+                dataCustomer.put("tgl_lahir", formatter.parse(tanggalLahir).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            dataCustomer.put("jenis_kelamin", jenisKelamin);
+            dataCustomer.put("domisili", domisili);
+            dataCustomer.put("alamat", alamat);
+
+            SQLiteDatabase db = dbCustomer.getWritableDatabase();
+            Long newId = db.insert("customer", null, dataCustomer);
+            Log.v("InputCustomer", "Insert record baru dengan ID " + newId);
             return true;
         }
 
@@ -72,11 +96,36 @@ public class InputCustomer extends Activity implements DatePickerDialog.OnDateSe
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         TextView dtTanggalLahir = (TextView) findViewById(R.id.dtTanggalLahir);
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMMM yyyy");
 
         Calendar tanggalDipilih = new GregorianCalendar(year,monthOfYear,dayOfMonth);
         String output = formatter.format(tanggalDipilih.getTime());
         Log.v("InputCustomer", "Tanggal : " + output);
         dtTanggalLahir.setText(output);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        pilihanDomisili = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void rgJenisKelaminClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rbPria:
+                if (checked)
+                    pilihanJenisKelamin = "P";
+                    break;
+            case R.id.rbWanita:
+                if (checked)
+                    pilihanJenisKelamin = "W";
+                    break;
+        }
     }
 }

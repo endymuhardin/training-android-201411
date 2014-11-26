@@ -57,10 +57,14 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/rbPria"
+            android:onClick="rgJenisKelaminClicked"
             android:text="@string/lbl_pria"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/rbWanita"
+            android:onClick="rgJenisKelaminClicked"
             android:text="@string/lbl_wanita"/>
     </RadioGroup>
 
