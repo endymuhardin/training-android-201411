@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.muhardin.endy.belajar.android.customer.InputCustomer">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+
+    <item
+        android:id="@+id/simpan_customer"
+        android:icon="@drawable/ic_action_accept"
+        android:title="Simpan"
+        android:showAsAction="always"
+    />
+
+    <item
+        android:id="@+id/hapus_customer"
+        android:icon="@drawable/ic_action_discard"
+        android:title="Hapus"
+        />
+
+</menu>
