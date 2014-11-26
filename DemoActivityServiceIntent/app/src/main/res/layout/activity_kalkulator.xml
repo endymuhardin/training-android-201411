@@ -32,7 +32,8 @@
         android:text="+"
         android:id="@+id/btnTambah"
         android:layout_below="@+id/num1"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="btnTambahClicked" />
 
     <Button
         android:layout_width="wrap_content"
