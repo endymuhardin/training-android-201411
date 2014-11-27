@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.muhardin.endy.belajar.android.rest.client.DaftarCustomerActivity">
+
+    <item android:id="@+id/action_sync" android:title="@string/action_sync"
+        android:orderInCategory="100" android:showAsAction="always"
+        android:icon="@drawable/ic_action_refresh"/>
+
+</menu>
