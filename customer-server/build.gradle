@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+group = 'com.muhardin.endy.belajar.android'
+version = '1.0-SNAPSHOT'
+
+description = """customer-server"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+
+
+repositories {
+     jcenter()
+}
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.4.3'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+    }
+}
+
+apply plugin: 'com.bmuschko.tomcat'
+
+tomcat {
+    httpPort = 8080
+}

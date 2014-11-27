@@ -1,2 +1,12 @@
 # Maven Ignore
 target
+
+# Gradle Ignore
+.gradle
+local.properties
+
+# Idea Ignore
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
