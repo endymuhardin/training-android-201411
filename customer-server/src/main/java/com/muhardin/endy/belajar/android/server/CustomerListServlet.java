@@ -35,9 +35,17 @@ public class CustomerListServlet extends HttpServlet {
         customer2.put("domisili", "Banten");
         customer2.put("alamat", "Rangkas");
 
+        Map<String, Object> customer3 = new LinkedHashMap<String, Object>();
+        customer3.put("_id", "3");
+        customer3.put("nama", "Mulyana");
+        customer3.put("tanggalLahir", new Date().getTime());
+        customer3.put("domisili", "Bogor");
+        customer3.put("alamat", "Wr. Jambu");
+
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         data.add(customer1);
         data.add(customer2);
+        data.add(customer3);
 
         // konversi ke JSON
         ObjectMapper mapper = new ObjectMapper();
