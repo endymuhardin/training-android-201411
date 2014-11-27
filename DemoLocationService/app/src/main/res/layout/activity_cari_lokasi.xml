@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".CariLokasi">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Lokasi"
+        android:id="@+id/btnUpdate"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:onClick="updatePosisi"/>
+
+    <TextView android:text="@string/posisi" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnUpdate"
+        android:layout_alignParentStart="true"
+        android:id="@+id/lblKoordinat" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtKoordinat"
+        android:layout_below="@+id/btnUpdate"
+        android:layout_toEndOf="@+id/lblKoordinat"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:id="@+id/lblAlamat"
+        android:layout_below="@+id/txtKoordinat"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAlamat"
+        android:layout_alignTop="@+id/lblAlamat"
+        android:layout_toEndOf="@+id/lblAlamat"
+        android:layout_alignEnd="@+id/txtKoordinat" />
+
+</RelativeLayout>
